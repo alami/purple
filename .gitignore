@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /envs
+docker-compose.yml
 
 # dependencies
 node_modules

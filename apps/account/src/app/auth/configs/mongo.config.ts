@@ -1,5 +1,5 @@
-import { MongooseModuleAsyncOptions} from "@nestjs/mongoose";
-import {ConfigModule, ConfigService} from "@nestjs/config";
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModuleAsyncOptions } from '@nestjs/mongoose';
 
 export const getMongoConfig = (): MongooseModuleAsyncOptions => {
   return {
@@ -7,19 +7,20 @@ export const getMongoConfig = (): MongooseModuleAsyncOptions => {
       uri: getMongoString(configService)
     }),
     inject: [ConfigService],
-    imports: [ConfigModule],
+    imports: [ConfigModule]
   }
 }
-const getMongoString = (ConfigService: ConfigService) =>
-  'mongodb://'+
-  ConfigService.get('MONGO_LOGIN')+
-  ':'+
-  ConfigService.get('MONGO_PASSWORD')+
-  '@'+
-  ConfigService.get('MONGO_HOST')+
-  ':'+
-  ConfigService.get('MONGO_PORT')+
-  '/'+
-  ConfigService.get('MONGO_DATABASE')+
-  '@authSource='+
-  ConfigService.get('MONGO_AUTHDATABASE');
+
+const getMongoString = (configService: ConfigService) =>
+  'mongodb://' +
+  configService.get('MONGO_LOGIN') +
+  ':' +
+  configService.get('MONGO_PASSWORD') +
+  '@' +
+  configService.get('MONGO_HOST') +
+  ':' +
+  configService.get('MONGO_PORT') +
+  '/' +
+  configService.get('MONGO_DATABASE') +
+  '?authSource=' +
+  configService.get('MONGO_AUTHDATABASE');
