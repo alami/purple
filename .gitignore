@@ -6,6 +6,9 @@
 /out-tsc
 /envs
 docker-compose.yml
+/mongo-data-4.4
+/rmq-demo/dist
+/rmq-demo/node_modules
 
 # dependencies
 node_modules
