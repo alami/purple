@@ -3,7 +3,7 @@ import {AccountLogin, AccountRegister} from "@purple/contracts";
 
 @Controller('auth')
 export class AuthController {
-  /*constructor() {}
+  constructor() {}
 
   @Post('register')
   async register(dto: AccountRegister.Request)    {
@@ -11,7 +11,7 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() { email, password }: AccountLogin.Request)   {
-  }*/
+  }
 
 }
 
