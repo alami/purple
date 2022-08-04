@@ -1,7 +1,8 @@
 import {UserEntity} from "../entities/user.entity";
 import {RMQService} from "nestjs-rmq";
 import {PurchaseState} from "@purple/interfaces";
-import {BuyCourseSagaStateStarted} from "./buy-course.steps";
+import { BuyCourseSagaStateCanceled, BuyCourseSagaStatePurchased,
+  BuyCourseSagaStateStarted, BuyCourseSagaStateWaitingForPayment } from "./buy-course.steps";
 
 export class BuyCourseSaga {
   private state: any;
@@ -13,14 +14,17 @@ export class BuyCourseSaga {
         this.state = new BuyCourseSagaStateStarted();
         break;
       case PurchaseState.WaitingForPayment:
+        this.state = new BuyCourseSagaStateWaitingForPayment();
         break;
       case PurchaseState.Purchased:
+        this.state = new BuyCourseSagaStatePurchased();
         break;
       case PurchaseState.Canceled:
+        this.state = new BuyCourseSagaStateCanceled();
         break;
     }
     this.state.setContext(this);   //установка контекста - связали сагу и состояние
-    this.user.updateCourseStatus(courseId, state)
+    this.user.setCourseStatus(courseId, state)
   }
   getState() {
     return this.state

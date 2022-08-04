@@ -60,7 +60,7 @@ export class UserEntity implements IUser {
     return compare(password, this.passwordHash);
   }
 
-  public updateCourseStatus(courseId: string, state: PurchaseState) {
+  public setCourseStatus(courseId: string, state: PurchaseState) {
     const exist = this.courses.find(c => c.courseId === courseId);
     if (!exist) {
       this.courses.push({
@@ -69,7 +69,7 @@ export class UserEntity implements IUser {
       });
       return this;
     }
-    /*if (state === PurchaseState.Cenceled) {
+    if (state === PurchaseState.Canceled) {
       this.courses = this.courses.filter(c => c.courseId !== courseId);
       return this;
     }
@@ -80,7 +80,7 @@ export class UserEntity implements IUser {
       }
       return c;
     });
-    this.events.push({
+    /*this.events.push({
       topic: AccountChangedCourse.topic,
       data: { courseId, userId: this._id, state }
     });
