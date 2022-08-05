@@ -12,7 +12,7 @@ export class UserQueries {
   @RMQRoute(AccountUserInfo.topic)
   async userInfo({id}: AccountUserInfo.Request)
     : Promise<AccountUserInfo.Response>{
-    const user = await this.userRepository.findById(id)
+    const user = await this.userRepository.findUserById(id)
     return {user}
   }
 
@@ -20,7 +20,7 @@ export class UserQueries {
   @RMQRoute(AccountUserCourses.topic)
   async userCourses({id}: AccountUserCourses.Request)
     : Promise<AccountUserCourses.Response>{
-    const user = await this.userRepository.findById(id)
+    const user = await this.userRepository.findUserById(id)
     return {courses: user.courses}
   }
 }

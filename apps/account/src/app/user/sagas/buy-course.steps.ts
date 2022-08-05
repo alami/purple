@@ -27,7 +27,7 @@ export class BuyCourseSagaStateStarted extends BuyCourseSagaState {
     return { paymentLink, user: this.saga.user };
   }
 
-  public async checkPayment(): Promise<{ user: UserEntity }> {
+  checkPayment(): Promise<{ user: UserEntity; status: PaymentStatus }> {
     throw new Error('Нельзя проверить платёж, который не начался');
   }
 
